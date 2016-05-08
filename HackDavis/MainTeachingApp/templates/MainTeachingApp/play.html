@@ -1,11 +1,11 @@
-{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang=en>
 	<head>
 		<meta charset=UTF-8>
 
 		<title>Play!</title>
-		<link rel=stylesheet href={% static 'MainTeachingApp/play.css' %}>
+		<link rel=stylesheet href=play.css %}>
 
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -15,6 +15,13 @@
 
 		<!-- Latest compiled JavaScript -->
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		
+		<style>
+		section
+		{
+			padding-left: 58px;
+		}
+		</style>
 	</head>
 	<body>
 	
@@ -40,70 +47,58 @@
 			</p>
 		</div>
 		<div class="container">
+		<center>
+		<button type = "button" id = "SohamsButton" > Soham's Button </button>
 		<section id=matrix>
 			<section id=row1>
-				<section id=box0>
-					<div class="container">
+				<section id=box0 class=container>
 						<p id=0>x</p>
-					</div>
+					
 				</section>
 		
-				<section id=box1>
-					<div class="container">
+				<section id=box1 class = container>
 						<p id=1>x</p>
-					</div>
 				</section>
 		
-				<section id=box2>
-					<div class="container">
+				<section id=box2 class = container>
 						<p id=2>x</p>
-					</div>
 				</section>
 		
 			</section>
 	
 			<section id=row2>
-				<section id=box3>
-					<div class="container">
+				<section id=box3 class = container>
 						<p id=3>x</p>
-					</div>
 				</section>
 		
-				<section id=box4>
-					<div class="container">
+				<section id=box4 class = container>
 						<p id=4>x</p>
-					</div>
+					
 				</section>
 		
-				<section id=box5>
-					<div class="container">
+				<section id=box5 class = container>
 						<p id=5>x</p>
-					</div>
 				</section>
 			</section>
 	
 			<section id=row3>
-				<section id=box6>
-					<div class="container">
+				<section id=box6 class = container>
 						<p id=6>x</p>
-					</div>
 				</section>
 		
-				<section id=box7>
-					<div class="container">
+				<section id=box7 class = container>
 						<p id=7>x</p>
-					</div>
 				</section>
 		
-				<section id=box8>
-					<div class="container">
+				<section id=box8 class = container>
 						<p id=8>x</p>
-					</div>
 				</section>
 			</section>
 		</section>
+		</center>
 
 		<script>
+		$("#SohamsButton").hide();
 		var array;
 		var selected;
 		var goal;
@@ -124,6 +119,10 @@
 		{
 			time = time - 1;
 			$("#timeVal").text(String(time));
+			if (time == 55)
+			{
+				$("#SohamsButton").show();
+			}
 			if(time <= 0)
 			{
 				clearInterval(timer);
@@ -168,21 +167,21 @@
 				array[i] = getRand(); 
 			}
 	
-			document.getElementById("box0").innerHTML = array[0]; 
-			document.getElementById("box1").innerHTML = array[1];
-			document.getElementById("box2").innerHTML = array[2];
-			document.getElementById("box3").innerHTML = array[3];
-			document.getElementById("box4").innerHTML = array[4];
-			document.getElementById("box5").innerHTML = array[5];
-			document.getElementById("box6").innerHTML = array[6];
-			document.getElementById("box7").innerHTML = array[7];
-			document.getElementById("box8").innerHTML = array[8];
+			document.getElementById("0").innerHTML = array[0]; 
+			document.getElementById("1").innerHTML = array[1];
+			document.getElementById("2").innerHTML = array[2];
+			document.getElementById("3").innerHTML = array[3];
+			document.getElementById("4").innerHTML = array[4];
+			document.getElementById("5").innerHTML = array[5];
+			document.getElementById("6").innerHTML = array[6];
+			document.getElementById("7").innerHTML = array[7];
+			document.getElementById("8").innerHTML = array[8];
 			return; 
 			}
 			
 		function handleClick() {
 			$("#textHeader").text(this.id);
-			
+			$(this).css("background-color", "rgb(244, 179, 80)");
 			if (selected == 2) {
 				selected = 0;
 			}
