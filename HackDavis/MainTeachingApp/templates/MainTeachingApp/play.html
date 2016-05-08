@@ -42,50 +42,80 @@
 		<div class="container">
 		<section id=matrix>
 			<section id=row1>
-				<section id=box11>
-					<p id=11>x</p>
+				<section id=box0>
+					<div class="container">
+						<p id=0>x</p>
+					</div>
 				</section>
 		
-				<section id=box12>
-					<p id=12>x</p>
+				<section id=box1>
+					<div class="container">
+						<p id=1>x</p>
+					</div>
 				</section>
 		
-				<section class=box13>
-					<p id=13>x</p>
+				<section id=box2>
+					<div class="container">
+						<p id=2>x</p>
+					</div>
 				</section>
 		
 			</section>
 	
 			<section id=row2>
-				<section id=box21>
-					<p id=21>x</p>
+				<section id=box3>
+					<div class="container">
+						<p id=3>x</p>
+					</div>
 				</section>
 		
-				<section id=box22>
-					<p id=22>x</p>
+				<section id=box4>
+					<div class="container">
+						<p id=4>x</p>
+					</div>
 				</section>
 		
-				<section id=box23>
-					<p id=23>x</p>
+				<section id=box5>
+					<div class="container">
+						<p id=5>x</p>
+					</div>
 				</section>
 			</section>
 	
 			<section id=row3>
-				<section id=box31>
-					<p id=31>x</p>
+				<section id=box6>
+					<div class="container">
+						<p id=6>x</p>
+					</div>
 				</section>
 		
-				<section id=box32>
-					<p id=32>x</p>
+				<section id=box7>
+					<div class="container">
+						<p id=7>x</p>
+					</div>
 				</section>
 		
-				<section id=box33>
-					<p id=33>x</p>
+				<section id=box8>
+					<div class="container">
+						<p id=8>x</p>
+					</div>
 				</section>
 			</section>
 		</section>
 
 		<script>
+		var array;
+		var selected;
+		var goal;
+		
+		var MAX_NUM = 15;
+			
+		var operations = ['addition', 'subtraction', 'multiplication', 'division'];
+		var operationSelect = 2;
+	
+		var time = 61;
+		var timerRunning = false;
+		
 		function getRand(){
 			return Math.ceil((Math.random() * MAX_NUM) + 0.1);
 		} 
@@ -112,10 +142,14 @@
 
 		function fill(){
 			array = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+			selected = 0;
+			
 			var i; 
 			var index1 = parseInt(Math.random() * MAX_NUM);
-			var index2 = parseInt(Math.random() * MAX_NUM); 
-
+			var index2 = parseInt(Math.random() * MAX_NUM);
+			var fact1 = getRand(); 
+			var fact2 = getRand();
+			goal = fact1 * fact2;
 			
 			array[index1] = fact1; 
 			array[index2] = fact2; 
@@ -134,35 +168,42 @@
 				array[i] = getRand(); 
 			}
 	
-			document.getElementById("11").innerHTML = array[0]; 
-			document.getElementById("12").innerHTML = array[1];
-			document.getElementById("13").innerHTML = array[2];
-			document.getElementById("21").innerHTML = array[3];
-			document.getElementById("22").innerHTML = array[4];
-			document.getElementById("23").innerHTML = array[5];
-			document.getElementById("31").innerHTML = array[6];
-			document.getElementById("32").innerHTML = array[7];
-			document.getElementById("33").innerHTML = array[8];
+			document.getElementById("box0").innerHTML = array[0]; 
+			document.getElementById("box1").innerHTML = array[1];
+			document.getElementById("box2").innerHTML = array[2];
+			document.getElementById("box3").innerHTML = array[3];
+			document.getElementById("box4").innerHTML = array[4];
+			document.getElementById("box5").innerHTML = array[5];
+			document.getElementById("box6").innerHTML = array[6];
+			document.getElementById("box7").innerHTML = array[7];
+			document.getElementById("box8").innerHTML = array[8];
 			return; 
 			}
 			
-		var MAX_NUM = 15;
+		function handleClick() {
+			$("#textHeader").text(this.id);
 			
-		var operations = ['addition', 'subtraction', 'multiplication', 'division'];
-		var operationSelect = 2;
-	
-		var time = 61;
-		var timerRunning = false;
+			if (selected == 2) {
+				selected = 0;
+			}
+		}
 		
-		var fact1 = getRand(); 
-		var fact2 = getRand();
-		var goal = fact1 * fact2; 
-		
-		$("#operationLbl").text(String(operations[operationSelect]));
-		$("#goalLbl").text(String(goal)); 
+		// Add an event listener to all of the divs
+		document.getElementById("box0").addEventListener("click", handleClick);
+		document.getElementById("box1").addEventListener("click", handleClick);
+		document.getElementById("box2").addEventListener("click", handleClick);
+		document.getElementById("box3").addEventListener("click", handleClick);
+		document.getElementById("box4").addEventListener("click", handleClick);
+		document.getElementById("box5").addEventListener("click", handleClick);
+		document.getElementById("box6").addEventListener("click", handleClick);
+		document.getElementById("box7").addEventListener("click", handleClick);
+		document.getElementById("box8").addEventListener("click", handleClick);
 
 		startTimer()
 		fill();
+		
+		$("#operationLbl").text(String(operations[operationSelect]));
+		$("#goalLbl").text(String(goal));
 		</script> 
 	</body>
 </html>
