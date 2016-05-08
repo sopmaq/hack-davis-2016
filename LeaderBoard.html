@@ -1,0 +1,77 @@
+<html>
+	<head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<style>
+	#header 
+	{
+		background-color: rgb(70, 70, 255);
+	}
+	#textHeader
+	{
+		color: rgb(0, 0, 0);
+	}
+	#table
+	{
+		text-align:center;
+		width = 500%;
+		border: 2px solid black;
+		padding: 50px;
+		border-spacing: 5px;
+		background-color: rgb(200, 200, 200);
+		color: black;
+	}
+	th
+	{
+		background-color: rgb(255, 50, 50);
+		padding: 30px;
+		text-align: center;
+	}
+	td
+	{
+		padding: 20px;
+	}
+</style>
+	</head>
+	<body>
+		<div id="header" class="jumbotron" style="text-align:center;" >
+			<h2 id = "textHeader"> The <b> Leaderboard <b></h2>
+		</div>
+
+		<center>
+			<button type = "button" onclick = CreateRow> <b> Add new student </b> </button>
+			<p></p>
+			<table id = "table"  border = "1">
+			<tr>
+				<th width = 25%;><b>First Name</b></td>
+				<th width = 25%;><b>Last Name</b> </td>
+				<th width = 25%;><b>Points</b></td>
+			</tr>
+			<tr>
+				<td> Soham </td>
+				<td> The MasterMind </td>
+				<td> 25 million </td>
+			</tr>
+			<tr>
+				<td> Saajan </td>
+				<td> The Student </td>
+				<td> 3 </td>
+			</tr>
+			<tr>
+				<td> Sophia </td>
+				<td> The TA </td>
+				<td> 1 million </td>
+			</tr>
+			
+			</table>
+		
+		</center>
+	</body>
+</html>
