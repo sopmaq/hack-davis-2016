@@ -1,11 +1,11 @@
-{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang=en>
 	<head>
 		<meta charset=UTF-8>
 
 		<title>Play!</title>
-		<link rel=stylesheet href={% static 'MainTeachingApp/play.css' %}>
+		<link rel=stylesheet href=play.css %}>
 
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -17,10 +17,17 @@
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		
 		<style>
+<<<<<<< HEAD
 			section {
 				margin:0 auto;
 				padding-left:50px;
 			}
+=======
+		section
+		{
+			padding-left: 58px;
+		}
+>>>>>>> cea1762f45f36282d2d3cb9e20638f910cf0c4e9
 		</style>
 	</head>
 	<body>
@@ -47,8 +54,11 @@
 			</p>
 		</div>
 		<div class="container">
+		<center>
+		<button type = "button" id = "SohamsButton" > Soham's Button </button>
 		<section id=matrix>
 			<section id=row1>
+<<<<<<< HEAD
 				<section id=0 class=container>
 					<p id=p0>x</p>
 				</section>
@@ -59,11 +69,25 @@
 		
 				<section id=2 class=container>
 					<p id=p2>x</p>
+=======
+				<section id=box0 class=container>
+						<p id=0>x</p>
+					
+				</section>
+		
+				<section id=box1 class = container>
+						<p id=1>x</p>
+				</section>
+		
+				<section id=box2 class = container>
+						<p id=2>x</p>
+>>>>>>> cea1762f45f36282d2d3cb9e20638f910cf0c4e9
 				</section>
 		
 			</section>
 	
 			<section id=row2>
+<<<<<<< HEAD
 				<section id=3 class=container>
 					<p id=p3>x</p>
 				</section>
@@ -74,10 +98,24 @@
 		
 				<section id=5 class=container>
 					<p id=p5>x</p>
+=======
+				<section id=box3 class = container>
+						<p id=3>x</p>
+				</section>
+		
+				<section id=box4 class = container>
+						<p id=4>x</p>
+					
+				</section>
+		
+				<section id=box5 class = container>
+						<p id=5>x</p>
+>>>>>>> cea1762f45f36282d2d3cb9e20638f910cf0c4e9
 				</section>
 			</section>
 	
 			<section id=row3>
+<<<<<<< HEAD
 				<section id=6 class=container>
 					<p id=p6>x</p>
 				</section>
@@ -88,6 +126,18 @@
 		
 				<section id=8 class=container>
 						<p id=p8>x</p>
+=======
+				<section id=box6 class = container>
+						<p id=6>x</p>
+				</section>
+		
+				<section id=box7 class = container>
+						<p id=7>x</p>
+				</section>
+		
+				<section id=box8 class = container>
+						<p id=8>x</p>
+>>>>>>> cea1762f45f36282d2d3cb9e20638f910cf0c4e9
 				</section>
 			</section>
 			
@@ -96,10 +146,15 @@
 				<p>Hmm.. that doesn't seem to be right, try again.</p>
 			</div>
 		</section>
+		</center>
 
 		<script>
+<<<<<<< HEAD
 		var score;
 		
+=======
+		$("#SohamsButton").hide();
+>>>>>>> cea1762f45f36282d2d3cb9e20638f910cf0c4e9
 		var array;
 		var selected;
 		var selectedElems;
@@ -126,6 +181,10 @@
 		{
 			time = time - 1;
 			$("#timeVal").text(String(time));
+			if (time == 55)
+			{
+				$("#SohamsButton").show();
+			}
 			if(time <= 0)
 			{
 				clearInterval(timer);
@@ -174,6 +233,7 @@
 				array[i] = getRand(); 
 			}
 	
+<<<<<<< HEAD
 			document.getElementById("p0").innerHTML = array[0]; 
 			document.getElementById("p1").innerHTML = array[1];
 			document.getElementById("p2").innerHTML = array[2];
@@ -183,10 +243,22 @@
 			document.getElementById("p6").innerHTML = array[6];
 			document.getElementById("p7").innerHTML = array[7];
 			document.getElementById("p8").innerHTML = array[8];
+=======
+			document.getElementById("0").innerHTML = array[0]; 
+			document.getElementById("1").innerHTML = array[1];
+			document.getElementById("2").innerHTML = array[2];
+			document.getElementById("3").innerHTML = array[3];
+			document.getElementById("4").innerHTML = array[4];
+			document.getElementById("5").innerHTML = array[5];
+			document.getElementById("6").innerHTML = array[6];
+			document.getElementById("7").innerHTML = array[7];
+			document.getElementById("8").innerHTML = array[8];
+>>>>>>> cea1762f45f36282d2d3cb9e20638f910cf0c4e9
 			return; 
 			}
 			
 		function handleClick() {
+<<<<<<< HEAD
 			var currIndex = parseInt(this.id);
 
 			if (selectedElems[currIndex] == false) {
@@ -198,6 +270,10 @@
 				return;
 			}
 			
+=======
+			$("#textHeader").text(this.id);
+			$(this).css("background-color", "rgb(244, 179, 80)");
+>>>>>>> cea1762f45f36282d2d3cb9e20638f910cf0c4e9
 			if (selected == 2) {
 				var firstElem;
 				var indexOfFirst;
