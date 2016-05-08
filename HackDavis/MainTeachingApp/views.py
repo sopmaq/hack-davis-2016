@@ -45,10 +45,11 @@ def gamePage(request):
         return redirect('/')
 
     thisUserScoreList = Score.objects.all().filter(theUserWhoEarnedIt__username=request.user.username)
-    thisUserScoreList = thisUserScoreList[0]
+    if not len(thisUserScoreList) == 0:
+        thisUserScoreList = thisUserScoreList[0]
+        currHighScore = thisUserScoreList.theHighScore
+        context['currHighScore'] = currHighScore
 
-    currHighScore = thisUserScoreList.theHighScore
-    context['currHighScore'] = currHighScore
 
     return render(request, 'MainTeachingApp/play.html', context)
 

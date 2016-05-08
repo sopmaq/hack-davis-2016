@@ -15,6 +15,13 @@
 
 		<!-- Latest compiled JavaScript -->
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		
+		<style>
+			section {
+				margin:0 auto;
+				padding-left:50px;
+			}
+		</style>
 	</head>
 	<body>
 	
@@ -42,79 +49,74 @@
 		<div class="container">
 		<section id=matrix>
 			<section id=row1>
-				<section id=box0>
-					<div class="container">
-						<p id=0>x</p>
-					</div>
+				<section id=0 class=container>
+					<p id=p0>x</p>
 				</section>
 		
-				<section id=box1>
-					<div class="container">
-						<p id=1>x</p>
-					</div>
+				<section id=1 class=container>
+					<p id=p1>x</p>
 				</section>
 		
-				<section id=box2>
-					<div class="container">
-						<p id=2>x</p>
-					</div>
+				<section id=2 class=container>
+					<p id=p2>x</p>
 				</section>
 		
 			</section>
 	
 			<section id=row2>
-				<section id=box3>
-					<div class="container">
-						<p id=3>x</p>
-					</div>
+				<section id=3 class=container>
+					<p id=p3>x</p>
 				</section>
 		
-				<section id=box4>
-					<div class="container">
-						<p id=4>x</p>
-					</div>
+				<section id=4 class="container">
+					<p id=p4>x</p>
 				</section>
 		
-				<section id=box5>
-					<div class="container">
-						<p id=5>x</p>
-					</div>
+				<section id=5 class=container>
+					<p id=p5>x</p>
 				</section>
 			</section>
 	
 			<section id=row3>
-				<section id=box6>
-					<div class="container">
-						<p id=6>x</p>
-					</div>
+				<section id=6 class=container>
+					<p id=p6>x</p>
 				</section>
 		
-				<section id=box7>
-					<div class="container">
-						<p id=7>x</p>
-					</div>
+				<section id=7 class=container>
+					<p id=p7>x</p>
 				</section>
 		
-				<section id=box8>
-					<div class="container">
-						<p id=8>x</p>
-					</div>
+				<section id=8 class=container>
+						<p id=p8>x</p>
 				</section>
 			</section>
+			
+			<br><br>
+			<div id="warningMessage" class="jumbotron" style="text-align:center;">
+				<p>Hmm.. that doesn't seem to be right, try again.</p>
+			</div>
 		</section>
 
 		<script>
+		var score;
+		
 		var array;
 		var selected;
+		var selectedElems;
 		var goal;
 		
 		var MAX_NUM = 15;
 			
 		var operations = ['addition', 'subtraction', 'multiplication', 'division'];
 		var operationSelect = 2;
+		
+		var firstElem;
+		var secondElem;
 	
 		var time = 61;
 		var timerRunning = false;
+		
+		$("#warningMessage").hide();
 		
 		function getRand(){
 			return Math.ceil((Math.random() * MAX_NUM) + 0.1);
@@ -142,6 +144,7 @@
 
 		function fill(){
 			array = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+			selectedElems = [false, false, false, false, false, false, false, false, false];
 			selected = 0;
 			
 			var i; 
@@ -150,6 +153,9 @@
 			var fact1 = getRand(); 
 			var fact2 = getRand();
 			goal = fact1 * fact2;
+			
+			$("#operationLbl").text(String(operations[operationSelect]));
+			$("#goalLbl").text(String(goal));
 			
 			array[index1] = fact1; 
 			array[index2] = fact2; 
@@ -168,42 +174,92 @@
 				array[i] = getRand(); 
 			}
 	
-			document.getElementById("box0").innerHTML = array[0]; 
-			document.getElementById("box1").innerHTML = array[1];
-			document.getElementById("box2").innerHTML = array[2];
-			document.getElementById("box3").innerHTML = array[3];
-			document.getElementById("box4").innerHTML = array[4];
-			document.getElementById("box5").innerHTML = array[5];
-			document.getElementById("box6").innerHTML = array[6];
-			document.getElementById("box7").innerHTML = array[7];
-			document.getElementById("box8").innerHTML = array[8];
+			document.getElementById("p0").innerHTML = array[0]; 
+			document.getElementById("p1").innerHTML = array[1];
+			document.getElementById("p2").innerHTML = array[2];
+			document.getElementById("p3").innerHTML = array[3];
+			document.getElementById("p4").innerHTML = array[4];
+			document.getElementById("p5").innerHTML = array[5];
+			document.getElementById("p6").innerHTML = array[6];
+			document.getElementById("p7").innerHTML = array[7];
+			document.getElementById("p8").innerHTML = array[8];
 			return; 
 			}
 			
 		function handleClick() {
-			$("#textHeader").text(this.id);
+			var currIndex = parseInt(this.id);
+
+			if (selectedElems[currIndex] == false) {
+				if (selected < 2) {
+					selected += 1;
+					selectedElems[currIndex] = true;
+				}
+			} else {
+				return;
+			}
 			
 			if (selected == 2) {
+				var firstElem;
+				var indexOfFirst;
+				var secondElem;
+				var indexOfSecond;
+			
+				var computedResult;
+				
+				// Get the first element
+				for (var i = 0; i < 9; i++) {
+					if (selectedElems[i] == true) {
+						firstElem = parseInt(array[i]);
+						indexOfFirst = i;
+						break;
+					}
+				}
+				
+				for (var j = indexOfFirst + 1; j < 9; i++) {
+					if (selectedElems[j] == true) {
+						secondElem = parseInt(array[j]);
+						indexOfSecond = j;
+						break;
+					}
+				}
+								
+				if (operationSelect == 2) {
+					// Multiply
+					computedResult = firstElem * secondElem;
+					$("#textHeader").text("The result: " + computedResult);
+
+				}
+				
+				if (computedResult != goal) {
+					$("#warningMessage").show();
+					setTimeout(function() {
+    					$('#warningMessage').fadeOut('fast');
+					}, 3000); // <-- time in milliseconds
+				} else {
+					score += time;
+					$("#textHeader").text("That's right!");
+
+				}
+				
 				selected = 0;
+				fill();
 			}
+			
 		}
 		
 		// Add an event listener to all of the divs
-		document.getElementById("box0").addEventListener("click", handleClick);
-		document.getElementById("box1").addEventListener("click", handleClick);
-		document.getElementById("box2").addEventListener("click", handleClick);
-		document.getElementById("box3").addEventListener("click", handleClick);
-		document.getElementById("box4").addEventListener("click", handleClick);
-		document.getElementById("box5").addEventListener("click", handleClick);
-		document.getElementById("box6").addEventListener("click", handleClick);
-		document.getElementById("box7").addEventListener("click", handleClick);
-		document.getElementById("box8").addEventListener("click", handleClick);
+		document.getElementById("0").addEventListener("click", handleClick);
+		document.getElementById("1").addEventListener("click", handleClick);
+		document.getElementById("2").addEventListener("click", handleClick);
+		document.getElementById("3").addEventListener("click", handleClick);
+		document.getElementById("4").addEventListener("click", handleClick);
+		document.getElementById("5").addEventListener("click", handleClick);
+		document.getElementById("6").addEventListener("click", handleClick);
+		document.getElementById("7").addEventListener("click", handleClick);
+		document.getElementById("8").addEventListener("click", handleClick);
 
 		startTimer()
 		fill();
-		
-		$("#operationLbl").text(String(operations[operationSelect]));
-		$("#goalLbl").text(String(goal));
 		</script> 
 	</body>
 </html>
