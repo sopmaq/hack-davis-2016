@@ -24,5 +24,6 @@ urlpatterns = [
     url(r'^leaderboard/', views.leaderboardPage),
     url(r'^processSignIn/', views.processSignIn),
     url(r'^gamePage/', views.gamePage),
+    url(r'^processGameAnswers/', views.processGameAnswers),
     url(r'^logoutUser/', views.logoutUser),
 ]

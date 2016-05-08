@@ -53,6 +53,37 @@ def gamePage(request):
 
     return render(request, 'MainTeachingApp/play.html', context)
 
+def processGameAnswers(request):
+    context = {}
+    if not request.user.is_authenticated() or not request.method == 'GET':
+        return redirect('/')
+
+    score = request.GET.get('score', None)
+    if score == None:
+        return redirect('/')
+
+    score = int(score)
+    context['score'] = score
+
+    thisUserScore = Score.objects.all().filter(theUserWhoEarnedIt__username=request.user.username)
+    if not len(thisUserScore) == 0:
+        thisUserScore = thisUserScore[0]
+    else:
+        newScore = Score()
+        newScore.theUserWhoEarnedIt = request.user
+        newScore.theHighScore = score
+        newScore.theNumOfGamesPlayed = 1
+        newScore.save()
+
+    oldHighScore = int(thisUserScore.theHighScore)
+    if oldHighScore < score:
+        thisUserScore.theHighScore = score
+
+    thisUserScore.theNumOfGamesPlayed = thisUserScore.theNumOfGamesPlayed + 1
+    thisUserScore.save()
+
+    return redirect('/leaderboard')
+
 def logoutUser(request):
     logout(request)
     return redirect('/')

@@ -1,11 +1,11 @@
-
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang=en>
 	<head>
 		<meta charset=UTF-8>
 
 		<title>Play!</title>
-		<link rel=stylesheet href=play.css %}>
+		<link rel=stylesheet href={% static 'MainTeachingApp/play.css' %}>
 
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -17,23 +17,16 @@
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		
 		<style>
-<<<<<<< HEAD
-			section {
-				margin:0 auto;
-				padding-left:50px;
-			}
-=======
 		section
 		{
 			padding-left: 58px;
 		}
->>>>>>> cea1762f45f36282d2d3cb9e20638f910cf0c4e9
 		</style>
 	</head>
 	<body>
 	
 		<div id="header" class="jumbotron" style="text-align:center;" >
-			<h2 id="textHeader"><font face="roboto-thin">The </font><font face="roboto-bold"> Game</font></h2>
+			<h2 id="textHeader"><img src="{% static 'MainTeachingApp/math_match.gif' %}" alt="math match header"</h2>
 		</div>
 		
 		<div id="goalDisplay" class="jumbotron">
@@ -55,123 +48,80 @@
 		</div>
 		<div class="container">
 		<center>
-		<button type = "button" id = "SohamsButton" > Soham's Button </button>
+		
 		<section id=matrix>
 			<section id=row1>
-<<<<<<< HEAD
 				<section id=0 class=container>
-					<p id=p0>x</p>
-				</section>
-		
-				<section id=1 class=container>
-					<p id=p1>x</p>
-				</section>
-		
-				<section id=2 class=container>
-					<p id=p2>x</p>
-=======
-				<section id=box0 class=container>
-						<p id=0>x</p>
+						<p id=p0>x</p>
 					
 				</section>
 		
-				<section id=box1 class = container>
-						<p id=1>x</p>
+				<section id=1 class = container>
+						<p id=p1>x</p>
 				</section>
 		
-				<section id=box2 class = container>
-						<p id=2>x</p>
->>>>>>> cea1762f45f36282d2d3cb9e20638f910cf0c4e9
+				<section id=2 class = container>
+						<p id=p2>x</p>
 				</section>
 		
 			</section>
 	
 			<section id=row2>
-<<<<<<< HEAD
-				<section id=3 class=container>
-					<p id=p3>x</p>
+				<section id=3 class = container>
+						<p id=p3>x</p>
 				</section>
 		
-				<section id=4 class="container">
-					<p id=p4>x</p>
-				</section>
-		
-				<section id=5 class=container>
-					<p id=p5>x</p>
-=======
-				<section id=box3 class = container>
-						<p id=3>x</p>
-				</section>
-		
-				<section id=box4 class = container>
-						<p id=4>x</p>
+				<section id=4 class = container>
+						<p id=p4>x</p>
 					
 				</section>
 		
-				<section id=box5 class = container>
-						<p id=5>x</p>
->>>>>>> cea1762f45f36282d2d3cb9e20638f910cf0c4e9
+				<section id=5 class = container>
+						<p id=p5>x</p>
 				</section>
 			</section>
 	
 			<section id=row3>
-<<<<<<< HEAD
-				<section id=6 class=container>
-					<p id=p6>x</p>
+				<section id=6 class = container>
+						<p id=p6>x</p>
 				</section>
 		
-				<section id=7 class=container>
-					<p id=p7>x</p>
+				<section id=7 class = container>
+						<p id=p7>x</p>
 				</section>
 		
-				<section id=8 class=container>
+				<section id=8 class = container>
 						<p id=p8>x</p>
-=======
-				<section id=box6 class = container>
-						<p id=6>x</p>
-				</section>
-		
-				<section id=box7 class = container>
-						<p id=7>x</p>
-				</section>
-		
-				<section id=box8 class = container>
-						<p id=8>x</p>
->>>>>>> cea1762f45f36282d2d3cb9e20638f910cf0c4e9
 				</section>
 			</section>
-			
-			<br><br>
-			<div id="warningMessage" class="jumbotron" style="text-align:center;">
-				<p>Hmm.. that doesn't seem to be right, try again.</p>
-			</div>
 		</section>
+		<br><br>
+		<div class="jumbotron" id="warningMessage">
+			<p>
+				Hmm that doesn't seem right... Try again!
+			</p>
+		</div>
+		<div class="jumbotron" id="successMessage">
+			<p>
+				That's right! :)
+			</p>
+		</div>
 		</center>
 
 		<script>
-<<<<<<< HEAD
-		var score;
-		
-=======
-		$("#SohamsButton").hide();
->>>>>>> cea1762f45f36282d2d3cb9e20638f910cf0c4e9
 		var array;
 		var selected;
-		var selectedElems;
 		var goal;
+		
+		var score = 0;
 		
 		var MAX_NUM = 15;
 			
 		var operations = ['addition', 'subtraction', 'multiplication', 'division'];
 		var operationSelect = 2;
-		
-		var firstElem;
-		var secondElem;
 	
 		var time = 61;
 		var timerRunning = false;
-		
-		$("#warningMessage").hide();
 		
 		function getRand(){
 			return Math.ceil((Math.random() * MAX_NUM) + 0.1);
@@ -181,14 +131,11 @@
 		{
 			time = time - 1;
 			$("#timeVal").text(String(time));
-			if (time == 55)
-			{
-				$("#SohamsButton").show();
-			}
+
 			if(time <= 0)
 			{
 				clearInterval(timer);
-				window.location.replace("/processGameAnswers");
+				window.location.replace("/processGameAnswers?score=" + score);
 			}
 		}
 
@@ -203,7 +150,7 @@
 
 		function fill(){
 			array = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-			selectedElems = [false, false, false, false, false, false, false, false, false];
+			selectedElems = [false, false, false, false, false, false, false, false, false]
 			selected = 0;
 			
 			var i; 
@@ -213,16 +160,17 @@
 			var fact2 = getRand();
 			goal = fact1 * fact2;
 			
-			$("#operationLbl").text(String(operations[operationSelect]));
-			$("#goalLbl").text(String(goal));
-			
-			array[index1] = fact1; 
-			array[index2] = fact2; 
 	
 			if (index2 == index1) 
 			{
 				index2 = (index1 + 1) % 9;
 			}
+			
+			array[index1] = fact1; 
+			array[index2] = fact2; 
+			
+			$("#operationLbl").text(String(operations[operationSelect]));
+			$("#goalLbl").text(String(goal));
 	
 			for (i = 0; i < 9; i++)
 			{
@@ -233,7 +181,6 @@
 				array[i] = getRand(); 
 			}
 	
-<<<<<<< HEAD
 			document.getElementById("p0").innerHTML = array[0]; 
 			document.getElementById("p1").innerHTML = array[1];
 			document.getElementById("p2").innerHTML = array[2];
@@ -243,96 +190,91 @@
 			document.getElementById("p6").innerHTML = array[6];
 			document.getElementById("p7").innerHTML = array[7];
 			document.getElementById("p8").innerHTML = array[8];
-=======
-			document.getElementById("0").innerHTML = array[0]; 
-			document.getElementById("1").innerHTML = array[1];
-			document.getElementById("2").innerHTML = array[2];
-			document.getElementById("3").innerHTML = array[3];
-			document.getElementById("4").innerHTML = array[4];
-			document.getElementById("5").innerHTML = array[5];
-			document.getElementById("6").innerHTML = array[6];
-			document.getElementById("7").innerHTML = array[7];
-			document.getElementById("8").innerHTML = array[8];
->>>>>>> cea1762f45f36282d2d3cb9e20638f910cf0c4e9
 			return; 
 			}
 			
-		function handleClick() {
-<<<<<<< HEAD
-			var currIndex = parseInt(this.id);
+		    function handleClick() {
+            var currIndex = parseInt(this.id);
 
-			if (selectedElems[currIndex] == false) {
-				if (selected < 2) {
-					selected += 1;
-					selectedElems[currIndex] = true;
-				}
-			} else {
-				return;
-			}
-			
-=======
-			$("#textHeader").text(this.id);
-			$(this).css("background-color", "rgb(244, 179, 80)");
->>>>>>> cea1762f45f36282d2d3cb9e20638f910cf0c4e9
-			if (selected == 2) {
-				var firstElem;
-				var indexOfFirst;
-				var secondElem;
-				var indexOfSecond;
-			
-				var computedResult;
-				
-				// Get the first element
-				for (var i = 0; i < 9; i++) {
-					if (selectedElems[i] == true) {
-						firstElem = parseInt(array[i]);
-						indexOfFirst = i;
-						break;
-					}
-				}
-				
-				for (var j = indexOfFirst + 1; j < 9; i++) {
-					if (selectedElems[j] == true) {
-						secondElem = parseInt(array[j]);
-						indexOfSecond = j;
-						break;
-					}
-				}
-								
-				if (operationSelect == 2) {
-					// Multiply
-					computedResult = firstElem * secondElem;
-					$("#textHeader").text("The result: " + computedResult);
+            if (selectedElems[currIndex] == false) {
+                if (selected < 2) {
+                    selected += 1;
+                    selectedElems[currIndex] = true;
+                }
+            } else {
+                return;
+            }
+            
+            $(this).css("background-color", "rgb(244, 179, 80)");
+            
+            if (selected == 2) {
+                var firstElem = 0;
+                var indexOfFirst = 0;
+                var secondElem = 0;
+                var indexOfSecond = 0;
+            
+                var computedResult = 0;
+                
+                // Get the first element
+                for (var i = 0; i < 9; i++) {
+                    if (selectedElems[i] == true) {
+                        firstElem = parseInt(array[i]);
+                        indexOfFirst = i;
+                        break;
+                    }
+                }
+                
+                for (var j = indexOfFirst + 1; j < 9; j++) {
+                    if (selectedElems[j] == true) {
+                        secondElem = parseInt(array[j]);
+                        indexOfSecond = j;
+                        break;
+                    }
+                }
+                                
+                if (operationSelect == 2) {
+                    // Multiply
+                    computedResult = firstElem * secondElem;
+                    $("#textHeader").text("The result: " + computedResult);
 
-				}
-				
-				if (computedResult != goal) {
-					$("#warningMessage").show();
-					setTimeout(function() {
-    					$('#warningMessage').fadeOut('fast');
-					}, 3000); // <-- time in milliseconds
-				} else {
-					score += time;
-					$("#textHeader").text("That's right!");
+                }
+                
+                if (computedResult != goal) {
+                    $("#warningMessage").show();
+                    setTimeout(function() {
+                        $('#warningMessage').fadeOut('fast');
+                    }, 3000); // <-- time in milliseconds
+                } else {
+                    score += time;
+                    $("#successMessage").show();
+                    setTimeout(function() {
+                        $('#successMessage').fadeOut('fast');
+                    }, 3000); // <-- time in milliseconds
+                    
 
-				}
-				
-				selected = 0;
-				fill();
-			}
-			
-		}
-		
-		// Add an event listener to all of the divs
-		document.getElementById("0").addEventListener("click", handleClick);
-		document.getElementById("1").addEventListener("click", handleClick);
-		document.getElementById("2").addEventListener("click", handleClick);
-		document.getElementById("3").addEventListener("click", handleClick);
-		document.getElementById("4").addEventListener("click", handleClick);
-		document.getElementById("5").addEventListener("click", handleClick);
-		document.getElementById("6").addEventListener("click", handleClick);
-		document.getElementById("7").addEventListener("click", handleClick);
-		document.getElementById("8").addEventListener("click", handleClick);
+                }
+                
+                $("#" + indexOfFirst).css("background-color", "rgb(252, 210, 134)");
+                $("#" + indexOfSecond).css("background-color", "rgb(252, 210, 134)");
+                
+                selected = 0;
+                fill();
+            }
+        }
+        
+        // Add an event listener to all of the divs
+        document.getElementById("0").addEventListener("click", handleClick);
+        document.getElementById("1").addEventListener("click", handleClick);
+        document.getElementById("2").addEventListener("click", handleClick);
+        document.getElementById("3").addEventListener("click", handleClick);
+        document.getElementById("4").addEventListener("click", handleClick);
+        document.getElementById("5").addEventListener("click", handleClick);
+        document.getElementById("6").addEventListener("click", handleClick);
+        document.getElementById("7").addEventListener("click", handleClick);
+        document.getElementById("8").addEventListener("click", handleClick);
+	
+		$("#warningMessage").hide();
+		$("#successMessage").hide();
 
 		startTimer()
 		fill();
