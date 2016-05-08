@@ -1,3 +1,23 @@
+.noNewLine {display: inline;}
+	
+#goalDisplay {text-align:center;
+			  padding-bottom: 10px;
+			  padding-top: 25px;
+			  }
+	
+#operationLbl {font-size:200%}
+
+#goalLbl {font-size:200%}
+
+#header {background-color: #B6D9E8;
+    	margin-bottom: 0px;
+		}
+		
+#timeLbl {text-align:center;
+		 }
+		
+#timeVal {font-size:200%}
+
 #row1 {width: 720px;
 	   height: 180px;
 	   }

@@ -14,7 +14,7 @@
 	<style>
 		#header
 		{
-			background-color: orange;
+			background-color: #F8EAC5;
 		}
 		p	
 		{
@@ -27,43 +27,35 @@
 		<div id="header" class="jumbotron" style="text-align:center;" >
 			<h2 id = "textHeader"> The <b> Game </b></h2>
 		</div>
-
-		<p></p>
-
-		<center>
-			
-			<p id = "print"> </p>
-		
-		</center>
+		<font family="roboto-thin"><p id="print"></p></font>
 		
 	</body>
 	
 	<script>
-
 		var time = 61;
 		var timerRunning = false;
 	
-		function RunTimer()
+		function updateClock()
 		{
 			time = time - 1;
 			document.getElementById("print").innerHTML = time;
 			if(time <= 0)
 			{
 				clearInterval(timer);
+				window.location.replace("/processGameAnswers");
 			}
 		}
 
-		function StartTimer()
+		function startTimer()
 		{	
 			$("a").hide("slow");
 			if (timerRunning == false)
 			{	
-				timer = setInterval(RunTimer, 1000);
+				timer = setInterval(updateClock, 1000);
 				timerRunning = true;
 			}			
 		}
-		StartTimer()
-
+		startTimer()
 	</script>
 
 </html>

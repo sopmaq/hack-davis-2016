@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <style>
+            #header 
+            {
+            	background-color: #B6D9E8;
+            }
+            th
+            {
+            	text-align: center;
+            }
+            td
+            {
+				text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="header" class="jumbotron" style="text-align:center;" >
+            <h2 id ="textHeader"><font face="roboto-thin">The</font><font face="roboto-bold"> Dashboard</font></h2>
+        </div>
+
+		<div class="container" style="text-align:center;">
+			<div class="jumbotron">
+				<a class="btn btn-success btn-lg" href="/gamePage">Play game</a>
+			</div>
+		</div>
+		<hr>
+		<div class="container" style="text-align:center;">
+			<div class="jumbotron">
+				<p><u>The Leaderboard</u></p>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Student's name</th>
+							<th>High Score</th>
+							<th>Number of sessions</th>
+						</tr>
+					</thead>
+					<tbody>
+					{% for eachEntry in studentDict %}
+						<tr>
+							<td>{{ eachEntry.theUserWhoEarnedIt }}</td>
+							<td>{{ eachEntry.theHighScore }}</td>
+							<td>{{ eachEntry.theNumOfGamesPlayed }}</td>
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<hr>
+		<div class="container" style="text-align:center;">
+			<div class="jumbotron">
+				<a class="btn btn-default btn-sm" href="/logoutUser">Log out</a>
+			</div>
+		</div>
+    </body>
+</html>

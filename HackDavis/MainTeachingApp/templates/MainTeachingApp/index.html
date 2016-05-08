@@ -1,0 +1,47 @@
+<html>
+    <head>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		
+        <style>
+        	#title {
+            	font-size: 300%;
+        	}
+        	body {
+        		background-color: #B6D9E8;
+        	}
+        </style>
+    </head>
+    <body>
+        <div class="jumbotron" style="text-align:center;">
+            <p id="title"><font face="roboto"><b>Hack Davis</b></font> <font face="roboto-thin">Project</font></p>
+        </div>
+        
+        <br><br<br><br>
+        
+        <div class="container">
+        	<div class="jumbotron" style="text-align:center;">
+        		<p><i>Well, hello there :) Please sign in:</i></p>
+        		
+				<form role="form" action="/processSignIn/" method="post">
+					{% csrf_token %}
+					<div class="form-group">
+						<label for="username">Username:</label>
+						<input type="text" name="usernameBox" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="password">Password</label>
+						<input type="password" name="passwordBox" class="form-control">
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
+        	</div>
+        </div>
+    </body>
+</html>

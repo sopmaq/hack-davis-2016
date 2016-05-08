@@ -16,6 +16,13 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from MainTeachingApp import views
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', views.homePage),
+    url(r'^leaderboard/', views.leaderboardPage),
+    url(r'^processSignIn/', views.processSignIn),
+    url(r'^gamePage/', views.gamePage),
+    url(r'^logoutUser/', views.logoutUser),
 ]
